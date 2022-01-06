@@ -1,3 +1,6 @@
+const fs = require('fs');
+const os = require('os');
+
 /**
  * pemutations module.
  * @module testtask-permutations/index
@@ -20,6 +23,18 @@ function generateNumber(n) {
   return number;
 };
 
+function writeFile(number) {
+  /**
+   * The function write to file number.
+   * @param {Array<number>} number - Number.
+   */
+  const fileName = 'out.txt';
+  const newLine = os.EOL;
+  fs.appendFileSync(fileName, `${newLine}${number.join('')}`, (error) => {
+    if (error) throw error;
+  });
+};
+
 function permutations(n) {
   /**
    * The function returns a text file that contains all permutations without repetitions,
@@ -30,7 +45,11 @@ function permutations(n) {
    */
   let numberLinesFile = 0;
   let number = generateNumber(n);
-  return numberLinesFile;
+  for (let i = 0; i < 7; i += 1) {
+    writeFile(number);
+    numberLinesFile += 1;
+  };
+  return numberLinesFile + 1;
 };
 
-console.log(permutations(7));
+console.log(`Запись в файл завершенна. Количество записей: ${permutations(7)}`);
