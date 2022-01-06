@@ -31,7 +31,7 @@ function writeFile(number) {
   const fileName = 'out.txt';
   const newLine = os.EOL;
   fs.appendFileSync(fileName, `${number.join('')}${newLine}`, (error) => {
-    if (error) throw error;
+    if (error) console.error(code);
   });
 };
 
@@ -88,7 +88,14 @@ function permutations(n) {
   let numberLinesFile = 1; // Потому что начальную перестановку пишем вне цикла
   let number = generateNumber(n);
   let len = number.length;
-  writeFile(number);
+  try {
+    fs.writeFileSync('5435//out.txt', number.join(''));
+  } catch(error) {
+    console.log('Возникла проблема при записи в файл!');
+    console.log(error.name);
+    console.log(error.message);
+    process.exit(1);
+  };
   while (nextPermutation(number, len)) {
     writeFile(number);
     numberLinesFile += 1;
