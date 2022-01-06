@@ -48,17 +48,32 @@ function swap(number, i, j) {
 };
 
 function nextPermutation(number, n) {
+  /**
+   * Function to generate the next permutation.
+   * @param {Array<number>} number - Number.
+   * @param {number} n - Number of digits in a number.
+   * @returns {boolean} - Signals if there are more permutations.
+   */
   let j = n - 2;
-  while (j != -1 && number[j] >= number[j + 1]) j--;
+  // Проходим по массиву, если он отсортирован в обратном лексикографическом порядке,
+  // значит больше перестановк нет. Иначе находим позицию первого символа для обмена.
+  while (j != -1 && number[j] >= number[j + 1]) {
+    j -= 1;
+  };
   if (j == -1)
-    return false; // больше перестановок нет
+    return false; // подааем сигнал, что перестановок больше нет
   let k = n - 1;
-  while (number[j] >= number[k]) k--;
-  swap(number, j, k);
+  // Находим позицию второго символа для обмена.
+  while (number[j] >= number[k]) {
+    k -= 1;
+  };
+  swap(number, j, k); //Обмениваем их
   let l = j + 1; 
-  let r = n - 1; // сортируем оставшуюся часть последовательности
-  while (l < r)
+  let r = n - 1; 
+  // Сортируем оставшуюся часть последовательности
+  while (l < r) {
     swap(number, l++, r--);
+  };
   return true;
 };
 
