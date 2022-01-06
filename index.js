@@ -27,6 +27,7 @@ function writeFile(number, fileName) {
   /**
    * The function write to file number.
    * @param {Array<number>} number - Number.
+   * @param {String} fileName - File name.
    */
   const newLine = os.EOL;
   try {
