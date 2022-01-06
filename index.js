@@ -23,16 +23,20 @@ function generateNumber(n) {
   return number;
 };
 
-function writeFile(number) {
+function writeFile(number, fileName) {
   /**
    * The function write to file number.
    * @param {Array<number>} number - Number.
    */
-  const fileName = 'out.txt';
   const newLine = os.EOL;
-  fs.appendFileSync(fileName, `${number.join('')}${newLine}`, (error) => {
-    if (error) console.error(code);
-  });
+  try {
+    fs.appendFileSync(fileName, `${newLine}${number.join('')}`);
+  } catch(error) {
+    console.log('Возникла проблема при записи в файл!');
+    console.log(error.name);
+    console.log(error.message);
+    process.exit(1);
+  };
 };
 
 function swap(number, i, j) {
@@ -85,11 +89,12 @@ function permutations(n) {
    * @return {number} numberLinesFile - The number of lines in the file. And file out.txt with
    * all permutations.
    */
+  const fileName = 'out.txt';
   let numberLinesFile = 1; // Потому что начальную перестановку пишем вне цикла
   let number = generateNumber(n);
   let len = number.length;
   try {
-    fs.writeFileSync('5435//out.txt', number.join(''));
+    fs.writeFileSync(fileName, number.join(''));
   } catch(error) {
     console.log('Возникла проблема при записи в файл!');
     console.log(error.name);
@@ -97,7 +102,7 @@ function permutations(n) {
     process.exit(1);
   };
   while (nextPermutation(number, len)) {
-    writeFile(number);
+    writeFile(number, fileName);
     numberLinesFile += 1;
   };
   return numberLinesFile;
