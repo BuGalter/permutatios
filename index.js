@@ -30,9 +30,30 @@ function writeFile(number) {
    */
   const fileName = 'out.txt';
   const newLine = os.EOL;
-  fs.appendFileSync(fileName, `${newLine}${number.join('')}`, (error) => {
+  fs.appendFileSync(fileName, `${number.join('')}${newLine}`, (error) => {
     if (error) throw error;
   });
+};
+
+function swap(number, i, j) {
+  let s = number[i];
+  number[i] = number[j];
+  number[j] = s;
+};
+
+function nextPermutation(number, n) {
+  let j = n - 2;
+  while (j != -1 && number[j] >= number[j + 1]) j--;
+  if (j == -1)
+    return false; // больше перестановок нет
+  let k = n - 1;
+  while (number[j] >= number[k]) k--;
+  swap(number, j, k);
+  let l = j + 1; 
+  let r = n - 1; // сортируем оставшуюся часть последовательности
+  while (l < r)
+    swap(number, l++, r--);
+  return true;
 };
 
 function permutations(n) {
@@ -43,13 +64,15 @@ function permutations(n) {
    * @return {number} numberLinesFile - The number of lines in the file. And file out.txt with
    * all permutations.
    */
-  let numberLinesFile = 0;
+  let numberLinesFile = 1;
   let number = generateNumber(n);
-  for (let i = 0; i < 7; i += 1) {
+  let len = number.length;
+  writeFile(number);
+  while (nextPermutation(number, len)) {
     writeFile(number);
     numberLinesFile += 1;
   };
-  return numberLinesFile + 1;
+  return numberLinesFile;
 };
 
-console.log(`Запись в файл завершенна. Количество записей: ${permutations(7)}`);
+console.log(`Запись в файл завершенна. Количество записей: ${permutations(5)}`);
