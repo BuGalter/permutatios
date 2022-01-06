@@ -36,6 +36,12 @@ function writeFile(number) {
 };
 
 function swap(number, i, j) {
+  /**
+   * The function to exchange two elements of an array.
+   * @param {Array<number>} number - Number.
+   * @param {number} i - The position of the array element to swap.
+   * @param {number} j - The position of the array element to swap.
+   */
   let s = number[i];
   number[i] = number[j];
   number[j] = s;
@@ -64,7 +70,7 @@ function permutations(n) {
    * @return {number} numberLinesFile - The number of lines in the file. And file out.txt with
    * all permutations.
    */
-  let numberLinesFile = 1;
+  let numberLinesFile = 1; // Потому что начальную перестановку пишем вне цикла
   let number = generateNumber(n);
   let len = number.length;
   writeFile(number);
