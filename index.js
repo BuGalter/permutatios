@@ -8,9 +8,9 @@ const os = require('os');
 
 function generateNumber(n) {
   /**
-   * The function returns an array that contains the start number.
-   * @param {number} n - Number of digits in a number.
-   * @return {Array<number>} number - The start number.
+   * The function returns an array that contains the start numbers.
+   * @param {number} n - Amount of numbers.
+   * @return {Array<number>} number - Starting sequence of numbers.
    */
   const repeatingDigit = 0;
   let number = [];
@@ -25,8 +25,8 @@ function generateNumber(n) {
 
 function writeFile(number, fileName) {
   /**
-   * The function write to file number.
-   * @param {Array<number>} number - Number.
+   * The function write to file numbers.
+   * @param {Array<number>} number - Numbers.
    * @param {String} fileName - File name.
    */
   const newLine = os.EOL;
@@ -43,7 +43,7 @@ function writeFile(number, fileName) {
 function swap(number, i, j) {
   /**
    * The function to exchange two elements of an array.
-   * @param {Array<number>} number - Number.
+   * @param {Array<number>} number - Numbers.
    * @param {number} i - The position of the array element to swap.
    * @param {number} j - The position of the array element to swap.
    */
@@ -55,8 +55,8 @@ function swap(number, i, j) {
 function nextPermutation(number, n) {
   /**
    * Function to generate the next permutation.
-   * @param {Array<number>} number - Number.
-   * @param {number} n - Number of digits in a number.
+   * @param {Array<number>} number - Numbers.
+   * @param {number} n - Amount of numbers.
    * @returns {boolean} - Signals if there are more permutations.
    */
   let j = n - 2;
@@ -86,7 +86,7 @@ function permutations(n) {
   /**
    * The function returns a text file that contains all permutations without repetitions,
    * n identical and different numbers from 1 to n.
-   * @param {number} n - Number of digits in a number.
+   * @param {number} n - Amount of numbers.
    * @return {number} numberLinesFile - The number of lines in the file. And file out.txt with
    * all permutations.
    */
