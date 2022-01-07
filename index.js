@@ -104,6 +104,7 @@ function permutations(n) {
   };
   while (nextPermutation(number, len)) {
     writeFile(number, fileName);
+    console.log(number.join(''));
     numberLinesFile += 1;
   };
   return numberLinesFile;
